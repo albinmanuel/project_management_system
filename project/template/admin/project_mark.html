@@ -1,0 +1,109 @@
+{% extends 'admin/admin_layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 col-xl-12 grid-margin stretch-card">
+        <div class="row w-100 flex-grow">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>PROJECT MARK </h2>
+                        <div class="row mb-3">
+                            <div class="col-md-5">
+                                <!-- Empty div -->
+                            </div>
+                        </div>
+                        <style>
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin-bottom: 20px;
+                            }
+                            th, td {
+                                padding: 12px 15px;
+                                text-align: center;
+                                border-bottom: 1px solid #ddd;
+                            }
+                            th {
+                                background-color: #f2f2f2;
+                                color: #333;
+                            }
+                            tr:hover {
+                                background-color: #f5f5f5;
+                            }
+                            
+                        </style>
+						      <form method="POST" action="{% url 'project_mark' %}">
+                    {% csrf_token %}
+                    
+                <div class="form-group">
+                    <label>Batch</label>
+                    
+                   <div class="input-group">
+    <select name="bid" class="form-control col-md-4"  required>
+        <option value="">Select</option>
+        {% for b in batch %}
+        <option value="{{b.batch_id}}">{{b.batch_title}}</option>
+        {% endfor %}
+    </select>
+    <div class="input-group-append">
+        <button type="submit" class="btn btn-success">Search</button>
+    </div>
+</div>
+
+                </div>
+                 
+                        
+                    
+                    
+                 
+                
+                 
+                </form>
+           
+                        <div class="table-responsive"> 
+                         {% if mark_list %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Project Title</th>
+                    <th>Group Members</th>
+                    <th>Mark</th>
+                    <!-- Add other fields here -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in mark_list %}
+                <tr>
+                    <td>{{ project.project_title }}</td>
+                    <td class="text-left">
+					<ol>
+					{% for member in project.teams %}
+					<li>{{ member.student_name }}({{ member.register_no }})</li>
+					 {% endfor %}
+					 </ol>
+					</td>
+                    <td>{{ project.mark }}</td>
+                    <!-- Add other fields here -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No marks found.</p>
+    {% endif %}
+                   </div>
+                
+				
+				
+				
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+
+  {% endblock %}

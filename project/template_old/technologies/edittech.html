@@ -1,0 +1,43 @@
+{% extends 'admin/admin_layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    
+<div class="col-12 col-xl-4 grid-margin stretch-card">
+    <div class="row w-100 flex-grow">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Edit Technologies</h2>
+                    <div class="row mb-3">
+                        <div class="col-md-5">
+                            <!-- Empty div -->
+                        </div>
+                    </div>
+                    <form method="POST" action="{% url 'editedtech' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                    <label>Technology Name</label>
+                    
+                    <input type="text" name="tname" value="{{tname.tech_name}}" class="form-control" pattern="[A-Za-z\s]+" title="Please enter only alphabets">
+                    <input type="hidden" name="tid" value="{{tname.tech_id}}" class="form-control">
+                </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Edit</button>
+                        <button type="reset" class="btn btn-danger">Cancel</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+  {% endblock %}
+
+
+technologies.html

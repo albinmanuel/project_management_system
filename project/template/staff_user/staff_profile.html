@@ -1,0 +1,45 @@
+{% extends 'staff_user/staff_layout.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-xl-12 grid-margin stretch-card">
+      <div class="row w-100 flex-grow">
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-header">MY PROFILE</div>
+            <div class="card-body">
+            
+               
+              <table class="table table-bordered">
+                <tr>
+                  <th>NAME</th><td>{{profile.name}}</td>
+                </tr>
+                <tr>
+                  <th>ADDRESS</th><td>{{profile.address}}</td>
+                </tr>
+                <tr>
+                  <th>PHONE</th><td>{{profile.phone}}</td>
+                </tr>
+                <tr>
+                  <th>EMAIL</th><td>{{profile.email}}</td>
+                </tr>
+                <tr>
+                  <th>GENDER</th><td>{{profile.gender}}</td>
+                </tr>
+                <tr>
+                  <th>STATUS</th><td>{{profile.status}}</td>
+                </tr>
+
+
+              </table>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+
+  </div>
+  
+  {% endblock %}

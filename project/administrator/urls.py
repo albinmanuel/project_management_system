@@ -1,0 +1,51 @@
+from django.contrib import admin
+from django.urls import path
+from .import views
+from django.conf import settings
+
+urlpatterns = [
+    path('administrator/',views.administrator,name='administrator'),
+    path('chngpassword',views.chngpassword,name='chngpassword'),
+    path('updtpassword',views.updtpassword,name='updtpassword'),
+    path('courses',views.courses,name='courses'),
+    path('addcourse',views.addcourse,name='addcourse'),
+    path('editcourse/<int:cid>',views.editcourse,name="editcourse"),
+    path('editedcourse',views.editedcourse,name="editedcourse"),
+    path('delcourse/<int:cid>',views.delcourse,name="delcourse"),
+    path('batch',views.batch,name='batch'),
+    path('addbatch',views.addbatch,name='addbatch'),
+    path('editbatch/<int:bid>',views.editbatch,name='editbatch'),
+    path('update_batch',views.update_batch,name='update_batch'),
+    path('delete_batch/<int:bid>',views.delete_batch,name='delete_batch'),
+    path('student',views.student,name='student'),
+    path('addstudent',views.addstudent,name='addstudent'),
+    path('editstudent/<int:sid>',views.editstudent,name='editstudent'),
+    path('editedstudent',views.editedstudent,name='editedstudent'),
+    path('delstudent/<int:sid>',views.delstudent,name='delstudent'),
+    path('technologies',views.technologies,name='technologies'),
+    path('addtechnologies',views.addtechnologies,name='addtechnologies'),
+    path('edittech/<int:tid>',views.edittech,name="edittech"),
+    path('editedtech',views.editedtech,name="editedtech"),
+    path('deltech/<int:tid>',views.deltech,name="deltech"),
+    path('staff',views.staff,name='staff'),
+    path('addstaff',views.addstaff,name='addstaff'),
+    path('stafftech/<int:sid>',views.stafftech,name="stafftech"),
+    path('addstafftech',views.addstafftech,name="addstafftech"),
+    path('delstafftech/<int:tid>/<int:sid>',views.delstafftech,name="delstafftech"),
+    path('editstaff/<int:sid>',views.editstaff,name='editstaff'),
+    path('delstaff/<int:sid>',views.delstaff,name='delstaff'),
+    path('editedstaff',views.editedstaff,name="editedstaff"),
+    path('prjtrequests',views.prjrequests,name="prjrequests"),
+    path('prjapprove/<int:pid>',views.prjapprove,name="prjapprove"),
+    path('prjreject/<int:pid>',views.prjreject,name="prjreject"),
+    path('prjremarks/<int:pid>',views.prjremarks,name="prjremarks"),
+    path('timeline',views.timeline,name='timeline'),
+    path('addtimeline',views.addtimeline,name='addtimeline'),
+    path('edittimeline/<int:pid>',views.edittimeline,name='edittimeline'),
+    path('editedtimeline',views.editedtimeline,name='editedtimeline'),
+    path('deltimeline/<int:tid>',views.deltimeline,name="deltimeline"),
+    path('logout', views.logout_view, name='logout'),
+    path('project_mark', views.project_mark, name='project_mark'),
+    
+
+]

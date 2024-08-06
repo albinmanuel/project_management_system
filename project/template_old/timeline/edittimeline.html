@@ -1,0 +1,153 @@
+{% extends 'admin/admin_layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 col-xl-8 grid-margin stretch-card">
+        <div class="row w-100 flex-grow">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Timeline </h2>
+                        <div class="row mb-3">
+                            <div class="col-md-5">
+                                <!-- Empty div -->
+                            </div>
+                        </div>
+                        <style>
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin-bottom: 20px;
+                            }
+                            th, td {
+                                padding: 12px 15px;
+                                text-align: center;
+                                border-bottom: 1px solid #ddd;
+                            }
+                            th {
+                                background-color: #f2f2f2;
+                                color: #333;
+                            }
+                            tr:hover {
+                                background-color: #f5f5f5;
+                            }
+                            
+                        </style>
+                        <!-- <div class="table-responsive"> 
+                        <table>
+                            <thead>
+                               
+                                    <th >Title</th>
+                                    <th >Abstract </th>
+                                    <th >Batch</th>
+                                    <th >Status</th>
+                                    <th >Actions </th>
+                                
+                            </thead>
+                            <tbody>
+                                {% for c in prj %}
+                                <tr>
+                                    <td>{{c.project_title}}</td>
+                                    <td>{{c.abstract}}</td>
+                                    <td>{{c.batch_title}}</td>
+                                    <td>{{c.status}}</td>
+                                    <td>
+                                        <a href="" class="btn btn-primary" >Edit</a>
+                                        <a href="" class="btn btn-danger" >Delete</a>
+                                    </td>
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table> -->
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-12 col-xl-6 grid-margin stretch-card">
+    <div class="row w-100 flex-grow">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Project Timeline</h2>
+                    <div class="row mb-3">
+                        <div class="col-md-5">
+                            <!-- Empty div -->
+                        </div>
+                    </div>
+                    <form method="POST" action="{% url 'editedtimeline' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                    
+                        <div class="form-group">
+                            <label>Batch</label>
+                            
+                            <select  name="bid" class="form-control">
+                                <option>Select</option>
+                                {% for b in blist %}
+                                <option value="{{b.batch_id}}">{{b.batch_title}}</option>
+                                {% endfor %}
+                                </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Module</label>
+                            <div class="dropdown">
+                                
+                       
+                                    <select class="form-control" name="module" required>
+                                        <option value="">Select Module</option>
+                                        <option value="Analysis">Analysis</option>
+                                        <option value="Designing">Designing</option>
+                                        <option value="Coding">Coding</option>
+                                        <option value="Testing">Testing</option>
+                                        <option value="Reports">Reports</option>
+                                      </select>
+                                    <!-- Hidden input to store the selected value -->
+                                    
+                                
+                                <!-- Hidden input to store the selected value -->
+                                
+                                <input type="hidden" value="{{plist.timeline_id}}" name="pid">
+                            </div>
+                            
+                            <script>
+                            function updateDropdownValue(selectedItem) {
+                                var dropdownButton = document.getElementById('moduleDropdown');
+                                var hiddenInput = document.getElementById('selectedModule');
+                                
+                                // Update button text and hidden input value
+                                dropdownButton.textContent = selectedItem.textContent;
+                                hiddenInput.value = selectedItem.getAttribute('data-value');
+                            }
+                            </script>
+                            
+                            
+                            
+                        </div>
+                <div class="form-group">
+                    <label>Deadline</label>
+                    <input type="date" name="date" id="deadline" value="{{plist.deadline}}" class="form-control">
+                </div>
+                
+                <script>
+                    // Get today's date
+                    var today = new Date().toISOString().split('T')[0];
+                    // Set the minimum selectable date for the date input field
+                    document.getElementById('deadline').min = today;
+                </script>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="reset" class="btn btn-danger">Cancel</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

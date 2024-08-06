@@ -1,0 +1,126 @@
+{% extends 'admin/admin_layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 col-xl-8 grid-margin stretch-card">
+        <div class="row w-100 flex-grow">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Add Batch</h2>
+                        <br>
+                        <style>
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin-bottom: 20px;
+                            }
+                            th, td {
+                                padding: 12px 15px;
+                                text-align: center;
+                                border-bottom: 1px solid #ddd;
+                            }
+                            th {
+                                background-color: #f2f2f2;
+                                color: #333;
+                            }
+                            tr:hover {
+                                background-color: #f5f5f5;
+                            }
+                            .action-buttons {
+                                display: flex;
+                                gap: 10px;
+                            }
+                            .action-button {
+                                padding: 6px 10px;
+                                background-color: #4CAF50;
+                                color: white;
+                                border: none;
+                                border-radius: 4px;
+                                cursor: pointer;
+                            }
+                            .cancel-button {
+                                background-color: #f44336;
+                            }
+                        </style>
+                        </head>
+                        <body>
+                        
+                    
+                        
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Course</th>
+                              <th>Batch</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                           {% for b in blist %}
+                           <tr>
+                            <td>
+                                {{b.course_name}}
+                            </td>
+                            <td>
+                                {{b.batch_title}}
+                            </td>
+                            <td>
+                                <a href="{% url 'editbatch' b.batch_id %}" class="btn btn-primary">Edit</a>
+                                <a href="{% url 'delete_batch' b.batch_id %}" class="btn btn-danger">Delete</a>
+                            </td>
+                           </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                        
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-12 col-xl-4 grid-margin stretch-card">
+        <div class="row w-100 flex-grow">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Add Batch</h2>
+                        <div class="row mb-3">
+                            <div class="col-md-5">
+                                <!-- Empty div -->
+                            </div>
+                        </div>
+                        <form method="POST" action="{% url 'addbatch' %}" >
+                        {% csrf_token %}
+                        <div class="form-group">
+                        <label>Course</label>
+                        
+                        <select  name="cid" class="form-control">
+                            {% for c in clist %}
+                            <option value="{{c.course_id}}">{{c.course_name}}</option>
+                            {% endfor %}
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Batch</label>
+                        <input type="text" name="batch" class="form-control" pattern="[A-Za-z]" title="Please enter single alphabet" required>
+                    </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="reset" class="btn btn-danger">Cancel</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+  {% endblock %}

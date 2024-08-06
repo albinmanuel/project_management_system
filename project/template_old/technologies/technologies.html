@@ -1,0 +1,98 @@
+{% extends 'admin/admin_layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 col-xl-8 grid-margin stretch-card">
+        <div class="row w-100 flex-grow">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Technologies </h2>
+                        <div class="row mb-3">
+                            <div class="col-md-5">
+                                <!-- Empty div -->
+                            </div>
+                        </div>
+                        <style>
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin-bottom: 20px;
+                            }
+                            th, td {
+                                padding: 12px 15px;
+                                text-align: center;
+                                border-bottom: 1px solid #ddd;
+                            }
+                            th {
+                                background-color: #f2f2f2;
+                                color: #333;
+                            }
+                            tr:hover {
+                                background-color: #f5f5f5;
+                            }
+                            
+                        </style>
+                        <table>
+                            <thead>
+                               
+                                    <th >Technology</th>
+                                    <th >Actions </th>
+                                
+                            </thead>
+                            <tbody>
+                                {% for c in tech_list %}
+                                <tr>
+                                    <td>{{c.tech_name}}</td>
+                                    <td>
+                                        <a href="{% url 'edittech' c.tech_id %}" class="btn btn-primary" >Edit</a>
+                                        <a href="{% url 'deltech' c.tech_id %}" class="btn btn-danger" >Delete</a>
+                                    </td>
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-12 col-xl-4 grid-margin stretch-card">
+    <div class="row w-100 flex-grow">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Add Technologies</h2>
+                    <div class="row mb-3">
+                        <div class="col-md-5">
+                            <!-- Empty div -->
+                        </div>
+                    </div>
+                    <form method="POST" action="{% url 'addtechnologies' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                    <label>Technology Name</label>
+                    
+                    <input type="text" name="tname" class="form-control" pattern="[A-Za-z\s]+" title="Please enter only alphabets"required>
+                </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Add</button>
+                        <button type="reset" class="btn btn-danger">Cancel</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+  {% endblock %}
+
+
+technologies.html
